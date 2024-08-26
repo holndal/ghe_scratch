@@ -1,4 +1,4 @@
-name: Tag Main on Merge
+name: 2_Tag Main on Merge
 
 on:
   pull_request:

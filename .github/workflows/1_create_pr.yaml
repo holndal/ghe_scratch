@@ -1,4 +1,4 @@
-name: Create PR from release/xxx to main
+name: 1_Create PR from release/xxx to main
 
 on:
   push:
