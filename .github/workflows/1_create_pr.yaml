@@ -1,0 +1,23 @@
+name: Create PR from release/xxx to main
+
+on:
+  push:
+    branches:
+      - release/**
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Create Pull Request
+      uses: repo-sync/pull-request@v2
+      with:
+        source_branch: ${{ github.ref_name }}
+        destination_branch: main
+        pr_title: "Merge ${{ github.ref_name }} into main"
+        pr_body: "This PR was automatically created by GitHub Actions."
+        pr_draft: false
+        github_token: ${{ secrets.GITHUB_TOKEN }}
