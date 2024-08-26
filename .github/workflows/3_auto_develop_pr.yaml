@@ -1,4 +1,4 @@
-name: Create PR from main to develop
+name: 3_Create PR from main to develop
 
 on:
   push:
