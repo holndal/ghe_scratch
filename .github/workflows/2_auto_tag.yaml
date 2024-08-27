@@ -9,6 +9,21 @@ on:
         type: string
 
 jobs:
+  create-pull-request-main2develop:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Create Pull Request
+      uses: repo-sync/pull-request@v2
+      with:
+        source_branch: main
+        destination_branch: develop
+        pr_title: "Merge main into develop"
+        pr_body: "This PR was automatically created by GitHub Actions."
+        pr_draft: false
+        github_token: ${{ secrets.GITHUB_TOKEN }}
   tag_commit:
     runs-on: ubuntu-latest
     steps:
