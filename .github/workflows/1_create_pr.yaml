@@ -1,9 +1,7 @@
-name: 1_Create PR from release/xxx to main
+name: 1_Create PR from selected branch to main
 
 on:
-  push:
-    branches:
-      - release/**
+  workflow_dispatch:
 
 jobs:
   create-pull-request:
