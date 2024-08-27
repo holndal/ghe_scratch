@@ -3,10 +3,6 @@ name: Tag Latest Commit
 on:
   workflow_dispatch:
     inputs:
-      branch:
-        description: 'Branch to tag'
-        required: true
-        type: string
       tag_name:
         description: 'Name of the tag'
         required: true
@@ -18,11 +14,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.inputs.branch }}
 
       - name: Create tag
         run: |
+          # Get the branch name from the GitHub context
+          BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
+
+          # Fetch the latest commits and create a tag
           git fetch --tags
-          git tag -a ${{ github.event.inputs.tag_name }} -m "Tagging commit ${{ github.sha }}"
+          git tag -a ${{ github.event.inputs.tag_name }} -m "Tagging commit on branch $BRANCH_NAME"
           git push origin ${{ github.event.inputs.tag_name }}
